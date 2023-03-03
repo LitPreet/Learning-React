@@ -34,7 +34,7 @@ async function getRestaurant()
 
 }
 if(!AllRestaurants) return null;
-if(filterdRestaurants?.length == 0) return <h1>No Result found😓😓</h1>
+// if(filterdRestaurants?.length == 0) return <h1>No Result found😓😓</h1>
 
     return (AllRestaurants.length === 0) ? <Shimmer/> : (
         <>
