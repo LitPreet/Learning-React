@@ -2,6 +2,8 @@ import { restaurantList } from "../constant";
 import RestrauntCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import ReactDOM  from 'react-dom/client';
+import { Link } from "react-router-dom";
 
 //props -properties
 // whenever say pass the props it means pass the data to functional component
@@ -56,7 +58,11 @@ if(!AllRestaurants) return null;
         </div>
         <div className='restraunt-list'>
             {filterdRestaurants.map(restaurant =>{
-                return <RestrauntCard {...restaurant.data} key={restaurant.data.id}/>;
+                return (
+                <Link to={"/restaurant/" + restaurant.data.id} key={restaurant.data.id}> 
+                <RestrauntCard {...restaurant.data} />
+                </Link>
+                )
             })}
            
         </div>

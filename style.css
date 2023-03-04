@@ -45,3 +45,9 @@
     display: flex;
     flex-wrap: wrap;
 }
+.Menu{
+    display: flex;
+}
+.Menu img{
+    width: 300px;
+}
