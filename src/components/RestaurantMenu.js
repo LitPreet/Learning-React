@@ -1,5 +1,4 @@
 import React from "react";
-// import ReactDOM  from 'react-dom/client';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
