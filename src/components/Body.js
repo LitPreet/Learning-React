@@ -4,16 +4,14 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import ReactDOM  from 'react-dom/client';
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline"
 
 //props -properties
 // whenever say pass the props it means pass the data to functional component
 //react hooks are just functions
 
-function filterData(searchText,restaurants)
-{
-const filterData = restaurants.filter((restaurant)=>restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase()));
-return filterData;
-}
+
 
 const Body = () =>{
     // variable in js
@@ -35,6 +33,13 @@ async function getRestaurant()
     setfilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
 
 }
+
+const isOnLine = useOnline();
+if(!isOnLine)
+{
+    return <h1>🎈😓 looks like you are offline please check your internet connection</h1>
+}
+
 if(!AllRestaurants) return null;
 // if(filterdRestaurants?.length == 0) return <h1>No Result found😓😓</h1>
 

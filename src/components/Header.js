@@ -1,8 +1,8 @@
-import  React from "react";
+import  React  from "react";
 import ReactDOM  from 'react-dom/client';
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import useOnline from "../utils/useOnline"
 
  const LogginUser = ()=>{
     return true;
@@ -16,6 +16,8 @@ const Title = () => (
 
  const Header = () =>{
     const [isLoggedin,setisLoggedin] = useState(false)
+    const isOnline = useOnline();
+
    
     return (
     <div className= "header">
@@ -25,7 +27,9 @@ const Title = () => (
             <Link to="/"><li>Home</li></Link>
                 <Link to="/about"><li>About</li></Link>
                 <Link to="/contact"><li>Contact</li></Link>
+                <Link to="/Instamart"><li>Instamart</li></Link>
                 <li>Cart</li>
+                <li>{isOnline ? "✅" : "🔴"}</li>
             </ul>
         </div>
         {isLoggedin ? <button onClick={()=>setisLoggedin(false)}>Log In</button>:  <button onClick={()=>setisLoggedin(true)}>Log out</button>}

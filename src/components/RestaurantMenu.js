@@ -4,20 +4,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../constant";
 import Shimmer from "./Shimmer";
+import useRestaurant from "../utils/useRestaurant";
+
 const RestaurantMenu = ()=>{
-    const {id} = useParams();
-    const [restaurant,setRestaurant] = useState(null);
     
-    useEffect(()=>{
-        getRestaurantInfo();
-    },[])
-    async function getRestaurantInfo()
-    {
-        const data = await fetch("https://corsanywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/v4/full?lat=21.1702401&lng=72.83106070000001&menuId=" + id);
-        const json = await data.json();
-        console.log(json);
-        setRestaurant(json.data);
-    }
+    const {id} = useParams();
+    const restaurant = useRestaurant(id);
+    
     return !restaurant ? <Shimmer /> :(
         <div className="Menu">
             <div>

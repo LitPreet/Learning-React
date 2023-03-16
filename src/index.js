@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React , { lazy ,Suspense } from 'react';
 import ReactDOM  from 'react-dom/client';
 
 // named import
@@ -11,9 +11,20 @@ import Footer from './components/Footer'
 import Error from './components/error';
 import About from './components/about';
 import Contact from './components/contact';
+import Profile from './components/Profile';
 import RestaurantMenu from './components/RestaurantMenu';
+import Shimmer from './components/Shimmer'
 import { createBrowserRouter, RouterProvider ,Outlet } from 'react-router-dom';
 
+//chunking
+//lazy loading
+//code splitting
+//dynamic bundling
+//on demand loading
+//Dynamic import
+
+const Instamart = lazy(()=> import('./components/Instamart'));
+//upon on demand loading -> upon render --> suspend loading
 
 const AppLayout =() =>{
     return (
@@ -37,6 +48,10 @@ const appRouter = createBrowserRouter([
         {
             path: "/about",
             element: <About />, 
+            children:[{
+                path: "profile",
+                element: <Profile />,
+            }]
          },
          {
             path: "/contact",
@@ -45,6 +60,10 @@ const appRouter = createBrowserRouter([
          {
             path: "/restaurant/:id",
             element: <RestaurantMenu />, 
+         },
+         {
+            path: "/Instamart",
+            element: (<Suspense fallback={<Shimmer/>}><Instamart /></Suspense>),
          }
        ]
     },
