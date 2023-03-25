@@ -1,11 +1,14 @@
+import React from 'react';
+import ReactDOM  from 'react-dom/client';
 import { restaurantList } from "../constant";
 import RestrauntCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import Shimmer from "./Shimmer";
 import ReactDOM  from 'react-dom/client';
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline"
+import UserContext from "../utils/UserContext";
 
 //props -properties
 // whenever say pass the props it means pass the data to functional component
@@ -19,6 +22,7 @@ const Body = () =>{
     const [AllRestaurants, setAllRestaurants] = useState([]);
     const [filterdRestaurants, setfilteredRestaurants] = useState([]);
     const [searchText, setSearchText] = useState(""); // a local state variable in react
+    const{user,setUser} = useContext(UserContext)
 
     useEffect(()=>{
         getRestaurant();
@@ -47,11 +51,11 @@ if(!AllRestaurants) return null;
         <>
         <div className="search-conatiner">
             <input type="text"
-            className="search-input"
+            className="search-input p-2 "
             placeholder="search"
              value={searchText}
              onChange={(e)=> setSearchText(e.target.value)} />
-             <button className="search-btn" 
+             <button className="search-btn p-2 m-2 bg-purple-900 hover:bg-purple-500 text-white rounded-md" 
              onClick={()=>{
             // need to filter the data
              const data = filterData(searchText,AllRestaurants);
@@ -60,8 +64,10 @@ if(!AllRestaurants) return null;
              }
              }
              >Search</button>
+             <input type = "text" onChange={ e => setUser({name:e.target.value,
+            email:'dpp@gmail.com'})}></input>
         </div>
-        <div className='restraunt-list'>
+        <div className='flex flex-wrap'>
             {filterdRestaurants.map(restaurant =>{
                 return (
                 <Link to={"/restaurant/" + restaurant.data.id} key={restaurant.data.id}> 

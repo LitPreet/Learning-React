@@ -1,4 +1,4 @@
-
+/* 
 .header{
     display: flex;
     justify-content: space-between;
@@ -50,4 +50,8 @@
 }
 .Menu img{
     width: 300px;
-}
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
