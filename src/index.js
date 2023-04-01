@@ -15,6 +15,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Carts";
 
 //chunking
 //lazy loading
@@ -33,11 +36,13 @@ const AppLayout = () => {
   });
   return (
     <>
+    <Provider store={store}>
       <UserContext.Provider value={{ user: user, setUser: setUser }}>
         <Header />
         <Outlet />
         <Footer />
       </UserContext.Provider>
+      </Provider>
     </>
   );
 };
@@ -75,6 +80,12 @@ const appRouter = createBrowserRouter([
           <Suspense fallback={<Shimmer />}>
             <Instamart />
           </Suspense>
+        ),
+      },
+      {
+        path: "/cart",
+        element: (
+          <Cart />
         ),
       },
     ],

@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM  from 'react-dom/client';
-import { restaurantList } from "../constant";
+// import ReactDOM  from 'react-dom/client';
+// import { restaurantList } from "../constant";
 import RestrauntCard from "./RestaurantCard";
 import { useState, useEffect,useContext } from "react";
 import Shimmer from "./Shimmer";
-import ReactDOM  from 'react-dom/client';
+// import ReactDOM  from 'react-dom/client';
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline"
